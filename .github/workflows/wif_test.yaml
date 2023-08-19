@@ -7,31 +7,32 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
+    runs-on: ubuntu-latest
 
     steps:
       - id: checkout
         name: Checkout repository
         uses: 'actions/checkout@v3'
 
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        workload_identity_provider: 'projects/640268614424/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-        service_account: 'github-action-test@stefan-playground-383411.iam.gserviceaccount.com'
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: 'projects/640268614424/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'github-action-test@stefan-playground-383411.iam.gserviceaccount.com'
 
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v1'
-      with:
-        version: '>= 363.0.0'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          version: '>= 363.0.0'
 
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
 
-    - name: 'WIF Test'
-      run: |
-        gcloud alpha storage cp -r \
-            "gs://wif-test-bucket-903233" ./corrected_result.csv
+      - name: 'WIF Test'
+        run: |
+          gcloud alpha storage cp -r \
+              "gs://wif-test-bucket-903233" ./corrected_result.csv
 
-    - name: 'WIF Test'
-      run: cat ./corrected_result.csv
+      - name: 'WIF Test'
+        run: cat ./corrected_result.csv
