@@ -10,10 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: checkout
-        name: Checkout repository
-        uses: 'actions/checkout@v3'
-
+      - name: Checkout actions-oidc-debugger
+        uses: actions/checkout@v3
+        with:
+          repository: github/actions-oidc-debugger
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./.github/actions/actions-oidc-debugger
+      - name: Debug OIDC Claims
+        uses: ./.github/actions/actions-oidc-debugger
+        with:
+          audience: 'projects/640268614424/locations/global/workloadIdentityPools/stefan-playground-383411/providers/my-pool'
+      
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
@@ -26,7 +34,7 @@ jobs:
         with:
           install_components: alpha
 
-      - name: 'Use gcloud CLI'
+      - name: 'gcloud info'
         run: 'gcloud info'
 
       - name: 'WIF Test'
