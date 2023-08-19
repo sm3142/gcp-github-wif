@@ -20,7 +20,7 @@ jobs:
       - name: Debug OIDC Claims
         uses: ./.github/actions/actions-oidc-debugger
         with:
-          audience: 'projects/640268614424/locations/global/workloadIdentityPools/stefan-playground-383411/providers/my-pool'
+          audience: 'projects/640268614424/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
       
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
