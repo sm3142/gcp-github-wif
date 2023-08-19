@@ -24,7 +24,7 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
         with:
-          version: '>= 363.0.0'
+          install_components: alpha
 
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
@@ -34,5 +34,5 @@ jobs:
           gcloud alpha storage cp -r \
               "gs://wif-test-bucket-903233" ./corrected_result.csv
 
-      - name: 'WIF Test'
+      - name: 'WIF copy test'
         run: cat ./corrected_result.csv
