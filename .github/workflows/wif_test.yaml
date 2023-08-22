@@ -40,7 +40,7 @@ jobs:
       - name: 'WIF Test'
         run: |
           gcloud alpha storage cp -r \
-              "gs://wif-test-bucket-903233" ./corrected_result.csv
+              "gs://wif-test-bucket-903233/corrected_result.csv" ./corrected_result.csv
 
       - name: 'WIF copy test'
         run: cat ./corrected_result.csv
