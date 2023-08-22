@@ -30,7 +30,7 @@ jobs:
           service_account: 'github-action-test@stefan-playground-383411.iam.gserviceaccount.com'
 
       - name: "Dump credentials"
-        run: cat /home/runner/work/gcp-github-wif/gcp-github-wif/gha-creds-563032a8866428a0.json
+        run: cat /home/runner/work/gcp-github-wif/gcp-github-wif/gha-creds-*.json
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
